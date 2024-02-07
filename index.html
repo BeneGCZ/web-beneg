@@ -12,6 +12,23 @@
     html {
       scroll-behavior: smooth; /* Plynulý posun */
     }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .footer-nav-left {
+      flex: 1 1 auto;
+    }
+    .contact-info {
+      flex: 1 1 auto;
+      text-align: right;
+    }
+    .contact-info p {
+      margin-top: 0;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -66,20 +83,24 @@
 </div>
 
 <footer class="footer">
-  <!-- Navigační odkazy v zápatí -->
-  <nav class="footer-nav">
+  <!-- Navigace na levou stranu -->
+  <nav class="footer-nav-left">
     <ul>
       <li><a href="#o-nas">O nás</a></li>
       <li><a href="#sluzby">Služby</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
   </nav>
-  <!-- Použití ikon z Font Awesome -->
-  <ul class="social-icons">
-    <li><a href="https://www.youtube.com/beneg"><i class="fab fa-youtube"></i></a></li>
-    <li><a href="https://www.instagram.com/_beneg_"><i class="fab fa-instagram"></i></a></li>
-    <li><a href="https://www.tiktok.com/@_beneg_"><i class="fab fa-tiktok"></i></a></li>
-  </ul>
+  <!-- Kontakty a sociální ikony -->
+  <div class="contact-info">
+    <ul class="social-icons">
+      <li><a href="https://www.youtube.com/beneg"><i class="fab fa-youtube"></i></a></li>
+      <li><a href="https://www.instagram.com/_beneg_"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="https://www.tiktok.com/@_beneg_"><i class="fab fa-tiktok"></i></a></li>
+    </ul>
+    <p>Kontaktujte nás:</p>
+    <!-- Zde můžete přidat další kontaktní informace, například telefonní číslo, e-mail, adresu, atd. -->
+  </div>
   <p>&copy; 2024 Můj Tmavý Web. Všechna práva vyhrazena.</p>
 </footer>
 
