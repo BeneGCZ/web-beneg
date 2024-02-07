@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Můj tmavý web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Přidání odkazu na Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth; /* Plynulý posun */
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="#o-nas">O nás</a></li>
+    <li><a href="#sluzby">Služby</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="frame">
+  <div class="content">
+    <h2>Vítejte v rámečku</h2>
+    <p>Zde můžete psát text, který se bude zobrazovat v rámečku.</p>
+  </div>
+</div>
+
+<div id="particles-js" class="particles-js"></div> <!-- Div pro částice -->
+
+<div id="o-nas" class="content">
+  <h2>O nás</h2>
+  <p>Stručně se představíme.</p>
+</div>
+
+<div id="sluzby" class="content">
+  <h2>Služby</h2>
+  <p>Nabízíme tyto služby.</p>
+</div>
+
+<div id="kontakt" class="content">
+    <h2>Kontakt</h2>
+    <!-- Formulář pro kontakt -->
+    <form action="submit.php" method="post" class="contact-form">
+      <div class="form-group">
+        <div class="input-box">
+          <input type="text" id="name" name="name" placeholder="Vaše jméno" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-box">
+          <input type="email" id="email" name="email" placeholder="Váš email" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-box">
+          <textarea id="message" name="message" rows="6" placeholder="Vaše zpráva" required></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-box">
+          <input type="text" id="captcha" name="captcha" placeholder="CAPTCHA" required>
+          <!-- Implementace CAPTCHA může být prováděna pomocí externí služby -->
+        </div>
+      </div>
+      <button type="submit">Odeslat</button>
+    </form>
+  </div>
+
+<footer class="footer">
+  <!-- Použití ikon z Font Awesome -->
+  <ul>
+    <li><a href="https://www.youtube.com/beneg"><i class="fab fa-youtube"></i></a></li>
+    <li><a href="https://www.instagram.com/_beneg_"><i class="fab fa-instagram"></i></a></li>
+    <li><a href="https://www.tiktok.com/@_beneg_"><i class="fab fa-tiktok"></i></a></li>
+  </ul>
+  <p>&copy; 2024 Můj Tmavý Web. Všechna práva vyhrazena.</p>
+</footer>
+
+<!-- Odkaz na knihovnu částic -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<!-- Skript pro inicializaci částic -->
+<script>
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 80,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": "#ffffff"
+      },
+      "shape": {
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#000000"
+        }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": true,
+        "anim": {
+          "enable": true,
+          "speed": 1,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 3,
+        "random": true,
+        "anim": {
+          "enable": false,
+          "speed": 40,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 6,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false,
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 1200
+        }
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "grab"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "grab": {
+          "distance": 140,
+          "line_linked": {
+            "opacity": 1
+          }
+        },
+        "bubble": {
+          "distance": 400,
+          "size": 40,
+          "duration": 2,
+          "opacity": 8,
+          "speed": 3
+        },
+        "repulse": {
+          "distance": 200,
+          "duration": 0.4
+        },
+        "push": {
+          "particles_nb": 4
+        },
+        "remove": {
+          "particles_nb": 2
+        }
+      }
+    },
+    "retina_detect": true
+  });
+</script>
+
+</body>
+</html>

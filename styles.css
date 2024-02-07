@@ -1,0 +1,144 @@
+html, body {
+    margin: 0;
+  }
+  
+  body {
+    background-color: #111; /* ještě tmavější pozadí */
+    color: #fff; /* bílá barva textu */
+    font-family: 'Open Sans', sans-serif; /* Použití Open Sans */
+    font-weight: bold; /* Nastavení bold stylu */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .navbar {
+    background-color: #222; /* tmavější barva navigačního pruhu */
+    padding: 20px 0; /* větší mezery */
+    margin-bottom: 20px; /* přidání spodního okraje */
+    position: sticky; /* navbar bude "sticky" */
+    top: 0; /* zarovnání na horní okraj obsahu */
+    width: 100%; /* zaujímá celou šířku obsahu */
+    z-index: 999; /* zajistí, aby byl navrhnutej přes obsah */
+}
+
+
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .navbar ul li {
+    display: inline;
+  }
+  
+  .navbar ul li a {
+    color: #fff; /* bílá barva textu odkazů */
+    text-decoration: none;
+    padding: 10px 20px;
+    position: relative;
+  }
+  
+  .navbar ul li a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar ul li a:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
+  
+  .frame {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Posunutí rámečku na střed */
+    width: 1200px;
+    height: 240px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); /* Efekt rozmazání */
+  }
+  
+  .frame .content {
+    padding: 40px 20px; /* větší mezery */
+    text-align: center; /* Zarovnání obsahu do středu */
+  }
+  
+  .content {
+    padding: 40px 20px; /* větší mezery */
+    scroll-behavior: smooth; /* Plynulý posun */
+    text-align: center; /* Zarovnání obsahu do středu */
+  }
+  
+  .footer {
+    background-color: #222; /* tmavější barva patičky */
+    padding: 20px 0; /* větší mezery */
+    width: 100%;
+    text-align: center; /* Zarovnání textu do středu */
+    margin-top: 20px; /* přidání horního okraje */
+  }
+  
+  .footer ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footer ul li {
+    list-style-type: none;
+    margin: 0 10px;
+  }
+  
+  .footer ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer ul li a:hover {
+    color: #ccc; /* Bílé ikony na hover */
+  }
+  
+  .contact-form {
+    margin: 0 auto; /* Zarovnání formuláře do středu */
+    max-width: 400px; /* Maximální šířka formuláře */
+  }
+  
+  .form-group {
+    margin-bottom: 20px; /* Větší mezera mezi jednotlivými položkami formuláře */
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  button {
+    border: 1px solid #ccc; /* Ohraničení vstupních polí */
+    border-radius: 5px; /* Zaoblení rohů */
+    padding: 10px; /* Vnitřní odsazení */
+    width: 100%; /* 100% šířka vstupních polí */
+    box-sizing: border-box; /* Šířka zahrnuje ohraničení a vnitřní polštářky */
+  }
+  
+  button {
+    background-color: #222; /* Barva tlačítka */
+    color: #fff; /* Barva textu tlačítka */
+    cursor: pointer; /* Změna kurzoru na ruku */
+    transition: background-color 0.3s ease; /* Plynulý přechod barvy pozadí */
+  }
+  
+  button:hover {
+    background-color: #444; /* Barva tlačítka po najetí myši */
+  }
+  
