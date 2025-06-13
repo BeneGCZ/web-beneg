@@ -126,3 +126,42 @@ html, body {
     background-color: #444; /* Barva tlačítka po najetí myši */
   }
   
+.social-follow {
+  padding: 40px 20px;
+}
+
+.follow-icons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.follow-icons a {
+  font-size: 60px;
+  color: #fff;
+  text-decoration: none;
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.3s;
+}
+
+.follow-icons a:hover {
+  transform: scale(1.2);
+}
+
+.follow-icons a.youtube {
+  color: #ff0000;
+}
+
+.follow-icons a.instagram {
+  color: #e4405f;
+}
+
+.follow-icons a.tiktok {
+  color: #69c9d0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
