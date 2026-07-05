@@ -47,7 +47,7 @@
 }
 
 :root{
-  --bg:#0e0e12;
+  --bg:#0c0c10;
   --panel:#17171e;
   --panel-2:#1e1e27;
   --line:#2a2a36;
@@ -105,22 +105,30 @@ body{
   background:var(--rec);transform:scaleX(0);transform-origin:left;
   transition:transform .3s cubic-bezier(.2,.7,.2,1);
 }
-.topbar nav a:hover::after,.topbar nav a:focus-visible::after{transform:scaleX(1)}
+.topbar nav a:hover::after,.topbar nav a:focus-visible::after,.topbar nav a.active::after{transform:scaleX(1)}
+.topbar nav a.active{color:var(--text)}
 .topbar nav a:hover,.topbar nav a:focus-visible{color:var(--text)}
-.lang-switch{display:flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.lang-switch{display:flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;position:relative}
+.lang-switch::before{
+  content:'';position:absolute;top:0;bottom:0;left:0;width:50%;
+  background:var(--rec);
+  transition:transform .3s cubic-bezier(.2,.7,.2,1);
+}
+.lang-switch.en::before{transform:translateX(100%)}
 .lang-btn{
   background:none;border:none;cursor:pointer;
   font-family:var(--mono);font-size:12px;letter-spacing:.08em;
   color:var(--muted);padding:7px 12px;transition:background .2s,color .2s;
 }
 .lang-btn:hover{color:var(--text)}
-.lang-btn.active{background:var(--rec);color:#fff}
+.lang-btn{position:relative;z-index:1}
+.lang-btn.active{color:#fff}
 .lang-btn:focus-visible{outline:2px solid var(--amber);outline-offset:-2px}
 .tc b{color:var(--amber);font-weight:500}
 
 /* ===== HERO ===== */
 .hero{
-  min-height:100svh;
+  min-height:88svh;
   display:flex;flex-direction:column;justify-content:center;align-items:center;
   text-align:center;
   padding:120px 6vw 0;
@@ -216,6 +224,31 @@ h1 .line span{opacity:1}
 }
 .btn-ghost:hover{background:var(--panel-2);transform:translateY(-2px)}
 
+/* Statistiky pod hero */
+.stats{
+  display:flex;justify-content:center;gap:0;
+  margin-top:64px;flex-wrap:wrap;
+  opacity:0;animation:rise .8s 1.2s forwards;
+}
+.stat{
+  display:flex;flex-direction:column;gap:8px;
+  padding:6px 44px;text-align:center;
+}
+.stat + .stat{border-left:1px solid var(--line)}
+.stat-n{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(2rem,4.5vw,3rem);line-height:1;
+  color:var(--text);font-variant-numeric:tabular-nums;
+}
+.stat-l{
+  font-family:var(--mono);font-size:11px;color:var(--muted);
+  letter-spacing:.14em;text-transform:uppercase;
+}
+@media(max-width:640px){
+  .stat{padding:6px 22px}
+  .stats{margin-top:48px}
+}
+
 /* ===== SEKCE ===== */
 section{padding:110px 6vw;scroll-margin-top:64px;max-width:1160px;margin-inline:auto}
 .sec-head{
@@ -250,8 +283,12 @@ section{padding:110px 6vw;scroll-margin-top:64px;max-width:1160px;margin-inline:
   padding:28px 24px;
   transition:transform .25s,border-color .25s,background .25s;
 }
-.card:hover{transform:translateY(-6px);border-color:var(--amber);background:var(--panel-2)}
-.card .ico{display:block;width:30px;height:30px;margin-bottom:16px;color:var(--amber);transition:transform .3s}
+.card:hover{
+  transform:translateY(-6px) scale(1.015);
+  border-color:var(--rec);background:var(--panel-2);
+  box-shadow:0 14px 44px rgba(255,59,48,.13);
+}
+.card .ico{display:block;width:38px;height:38px;margin-bottom:18px;color:var(--amber);transition:transform .3s}
 .card:hover .ico{transform:scale(1.12) rotate(-4deg)}
 .card .ico svg{width:100%;height:100%}
 .card .ico svg *{
@@ -423,6 +460,12 @@ section{padding:110px 6vw;scroll-margin-top:64px;max-width:1160px;margin-inline:
 }
 .contact-wrap h2 em{font-style:normal;color:var(--rec)}
 .contact-wrap p{color:var(--muted);line-height:1.7;margin-bottom:36px}
+.btn-big{font-size:16px;padding:18px 40px}
+.mail-line{margin-top:22px}
+.reply-note{
+  margin-top:14px;font-family:var(--mono);font-size:12px;
+  color:var(--muted);letter-spacing:.08em;
+}
 .mail{
   font-family:var(--mono);font-size:clamp(1rem,2.5vw,1.3rem);
   color:var(--text);text-decoration:none;
@@ -471,5 +514,5 @@ footer{
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
   h1 .line span{transform:none}
-  .eyebrow,.hero p.lead,.hero-cta{opacity:1}
+  .eyebrow,.hero p.lead,.hero-cta,.stats{opacity:1}
 }

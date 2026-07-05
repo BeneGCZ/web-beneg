@@ -22,6 +22,7 @@ const I18N = {
     h1a:"Střih. Grafika.", h1b:"Obsah.",
     lead:"Jsem BeneG. Stříhám videa, dělám grafiku a tvořím obsah pro YouTube, Reels a TikTok. Umím se postarat i o celé sociální sítě — od nápadu přes střih a vizuál až po publikaci.",
     cta1:"Napiš mi", cta2:"Kde mě najdeš ↓",
+    st1:"let zkušeností", st2:"zhlédnutí", st3:"odpověď na poptávku",
     s_h:"Co umím",
     c1_h:"YouTube videa", c1_p:"Klasická dlouhá videa. Pohlídám tempo, ať lidi neodkliknou po první minutě.",
     c2_p:"Rychlé střihy, titulky a hook hned v úvodu. Formát, který se dneska sleduje nejvíc.", c2_k:"9:16 · titulky · SFX",
@@ -31,7 +32,8 @@ const I18N = {
     p_h:"Kde působím",
     p_yt:"Sleduj mě na YouTube", p_ig:"Sleduj mě na Instagramu", p_tt:"Sleduj mě na TikToku",
     k_h1:"Máš materiál?", k_h2:"Pojď do toho.",
-    k_p:"Napiš mi, co potřebuješ nastříhat, a ozvu se ti zpátky — většinou do 24 hodin.",
+    k_p:"Napiš mi, co potřebuješ nastříhat — video, grafiku nebo celé sítě.",
+    k_btn:"Napsat e-mail", k_note:"Odpovídám do 24 hodin.",
     f1:"© 2026 BeneG — video editor"
   },
   en: {
@@ -45,6 +47,7 @@ const I18N = {
     h1a:"Editing. Design.", h1b:"Content.",
     lead:"I'm BeneG. I edit videos, create graphics and make content for YouTube, Reels and TikTok. I can also run your social media end to end — from idea through editing and visuals to publishing.",
     cta1:"Get in touch", cta2:"Where to find me ↓",
+    st1:"years of experience", st2:"views", st3:"reply time",
     s_h:"What I do",
     c1_h:"YouTube videos", c1_p:"Classic long-form videos. I keep the pacing tight so people don't click away after the first minute.",
     c2_p:"Fast cuts, captions and a hook right at the start. The format everyone watches these days.", c2_k:"9:16 · captions · SFX",
@@ -54,7 +57,8 @@ const I18N = {
     p_h:"Where you can find me",
     p_yt:"Follow me on YouTube", p_ig:"Follow me on Instagram", p_tt:"Follow me on TikTok",
     k_h1:"Got footage?", k_h2:"Let's do this.",
-    k_p:"Tell me what you need edited and I'll get back to you — usually within 24 hours.",
+    k_p:"Tell me what you need — a video, graphics or your whole socials.",
+    k_btn:"Send an e-mail", k_note:"I reply within 24 hours.",
     f1:"© 2026 BeneG — video editor"
   }
 };
@@ -70,6 +74,7 @@ function setLang(lang){
   document.querySelectorAll('.lang-btn').forEach(b=>{
     b.classList.toggle('active', b.dataset.lang === lang);
   });
+  document.querySelector('.lang-switch').classList.toggle('en', lang === 'en');
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>setLang(btn.dataset.lang));
@@ -116,6 +121,11 @@ const BA_PAIRS = [
   document.getElementById('baPrev').addEventListener('click', ()=>show(idx-1));
   document.getElementById('baNext').addEventListener('click', ()=>show(idx+1));
 
+  // s jedinou ukázkou nemá přepínání smysl — schovat
+  if(BA_PAIRS.length < 2){
+    document.querySelector('.ba-nav').style.display = 'none';
+  }
+
   // celá obrazovka
   const fullBtn = document.getElementById('baFull');
   fullBtn.addEventListener('click', ()=>{
@@ -126,6 +136,50 @@ const BA_PAIRS = [
   // přednačtení, ať přepínání neblikne
   BA_PAIRS.forEach(p=>{ new Image().src = p.before; new Image().src = p.after; });
   show(0);
+})();
+
+// Dopočítávání statistik
+(function(){
+  const nums = document.querySelectorAll('.stat-n');
+  if(!nums.length) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const el = e.target;
+      const target = +el.dataset.count;
+      const suffix = el.dataset.suffix || '';
+      if(reduce){ el.textContent = target + suffix; return; }
+      const t0 = performance.now(), dur = 1600;
+      (function step(now){
+        const p = Math.min((now - t0)/dur, 1);
+        const eased = 1 - Math.pow(1-p, 4);
+        el.textContent = Math.round(target * eased) + suffix;
+        if(p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  },{threshold:.6});
+  nums.forEach(n=>io.observe(n));
+})();
+
+// Aktivní sekce v menu při scrollování
+(function(){
+  const links = [...document.querySelectorAll('.topbar nav a[href^="#"]')];
+  const map = new Map();
+  links.forEach(a=>{
+    const sec = document.querySelector(a.getAttribute('href'));
+    if(sec) map.set(sec, a);
+  });
+  const spy = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(a=>a.classList.remove('active'));
+        map.get(e.target)?.classList.add('active');
+      }
+    });
+  },{rootMargin:'-35% 0px -55% 0px'});
+  map.forEach((_,sec)=>spy.observe(sec));
 })();
 
 // Šipka zpět nahoru
