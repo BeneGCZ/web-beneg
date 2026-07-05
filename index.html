@@ -26,9 +26,9 @@
 <!-- HORNÍ LIŠTA -->
 <div class="renderbar" aria-hidden="true"></div>
 <header class="topbar">
-  <div class="brand"><span class="rec-dot"></span>BENEG&nbsp;·&nbsp;EDITOR</div>
+  <a class="brand" href="#" id="brandHome"><span class="rec-dot"></span>BENEG</a>
   <nav id="mainnav">
-    <a href="#sluzby" data-i18n="nav1">Střih</a>
+    <a href="#sluzby" data-i18n="nav1">Služby</a>
     <a href="#tvorba" data-i18n="nav_w">Tvorba</a>
     <a href="#platformy" data-i18n="nav2">Platformy</a>
     <a href="#kontakt" data-i18n="nav3">Kontakt</a>
@@ -41,12 +41,19 @@
 <!-- HERO -->
 <main>
 <section class="hero">
-  <div class="eyebrow"><span>● REC</span>&nbsp;&nbsp;<span data-i18n="eyebrow">VIDEO EDITOR & DIGITÁLNÍ TVŮRCE</span></div>
+  <!-- Smyčka na pozadí: nahraj video/hero.webm (krátký sestřih 10-20 s, bez zvuku).
+       Dokud neexistuje, použije se ukazka.webm. -->
+  <video class="hero-bg" autoplay muted loop playsinline aria-hidden="true">
+    <source src="video/hero.webm" type="video/webm">
+    <source src="video/ukazka.webm" type="video/webm">
+  </video>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="avail"><span class="avail-dot"></span><span data-i18n="av">OTEVŘENO PRO NOVÉ ZAKÁZKY</span></div>
+  <div class="eyebrow"><span data-i18n="eyebrow">VIDEO EDITOR & DIGITÁLNÍ TVŮRCE</span></div>
   <h1>
-    <span class="line"><span data-i18n="h1a">Střih. Grafika.</span></span>
-    <span class="line"><span class="stroke" data-i18n="h1b">Obsah.</span></span>
+    <span class="line"><span>BENEG</span></span>
   </h1>
-  <p class="lead" data-i18n="lead">Jsem BeneG. Stříhám videa, dělám grafiku a tvořím obsah pro YouTube, Reels a TikTok. Umím se postarat i o celé sociální sítě — od nápadu přes střih a vizuál až po publikaci.</p>
+  <p class="taglist" data-i18n="tags">STŘIH · GRAFIKA · OBSAH · SPRÁVA SÍTÍ</p>
   <div class="hero-cta">
     <a class="btn btn-primary" href="#kontakt" data-i18n="cta1">Napiš mi</a>
     <a class="btn btn-ghost" href="#platformy" data-i18n="cta2">Kde mě najdeš ↓</a>
@@ -66,13 +73,13 @@
       <span class="stat-l" data-i18n="st3">odpověď na poptávku</span>
     </div>
   </div>
+
 </section>
 
 <!-- SLUŽBY -->
 <section id="sluzby">
   <div class="sec-head reveal">
-    <span class="tag">SEQ 01</span>
-    <h2 data-i18n="s_h">Co umím</h2>
+    <h2 data-i18n="s_h">Služby</h2>
   </div>
   <div class="services">
     <div class="card reveal">
@@ -117,8 +124,7 @@
 <!-- TVORBA -->
 <section id="tvorba">
   <div class="sec-head reveal">
-    <span class="tag">SEQ 02</span>
-    <h2 data-i18n="w_h">Ukázky tvorby</h2>
+    <h2 data-i18n="w_h">Tvorba</h2>
   </div>
   <div class="showcase reveal">
     <!-- VIDEO: nahraď soubor video/ukazka.webm svým videem (stejný název, nebo uprav src níže) -->
@@ -134,7 +140,6 @@
 <!-- UPSCALE -->
 <section id="upscale">
   <div class="sec-head reveal">
-    <span class="tag">SEQ 03</span>
     <h2 data-i18n="up_h">Upscale</h2>
   </div>
   <div class="showcase reveal">
@@ -163,8 +168,7 @@
 <!-- PLATFORMY -->
 <section id="platformy">
   <div class="sec-head reveal">
-    <span class="tag">SEQ 04</span>
-    <h2 data-i18n="p_h">Kde působím</h2>
+    <h2 data-i18n="p_h">Platformy</h2>
   </div>
   <div class="platforms">
     <a class="plat yt reveal" href="https://www.youtube.com/@BeneG" target="_blank" rel="noopener">

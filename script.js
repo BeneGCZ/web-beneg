@@ -1,9 +1,48 @@
+// Zámek scrollspy během programového scrollu (proti problikávání menu)
+let spyLock = false, spyTimer;
+function lockSpy(targetHref){
+  spyLock = true;
+  const navLinks = document.querySelectorAll('.topbar nav a[href^="#"]');
+  navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === targetHref));
+  clearTimeout(spyTimer);
+  const unlock = ()=>{ spyLock = false; removeEventListener('scroll', onScroll); };
+  const onScroll = ()=>{ clearTimeout(spyTimer); spyTimer = setTimeout(unlock, 150); };
+  addEventListener('scroll', onScroll, {passive:true});
+  spyTimer = setTimeout(unlock, 1200); // pojistka
+}
+
+// Decode efekt na řádku nad nadpisem
+function decodeText(el){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const finalText = el.textContent;
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&/=';
+  const t0 = performance.now(), dur = 1100;
+  (function step(now){
+    const p = Math.min((now - t0)/dur, 1);
+    const fixed = Math.floor(finalText.length * p);
+    el.textContent = finalText.slice(0, fixed) +
+      [...finalText.slice(fixed)].map(ch => ch === ' ' ? ' ' : chars[Math.random()*chars.length|0]).join('');
+    if(p < 1) requestAnimationFrame(step);
+    else el.textContent = finalText;
+  })(performance.now());
+}
+decodeText(document.querySelector('[data-i18n="eyebrow"]'));
+
+// Logo v liště -> zpět nahoru
+document.getElementById('brandHome').addEventListener('click', e=>{
+  e.preventDefault();
+  lockSpy(null);
+  scrollTo({top:0, behavior:'smooth'});
+});
+
 // Plynulé scrollování na sekce
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
-    const target = document.querySelector(a.getAttribute('href'));
+    const href = a.getAttribute('href');
+    const target = document.querySelector(href);
     if(target){
       e.preventDefault();
+      lockSpy(href);
       target.scrollIntoView({behavior:'smooth'});
     }
   });
@@ -12,24 +51,23 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 // ===== PŘEKLADY CZ / EN =====
 const I18N = {
   cs: {
-    nav1:"Střih", nav_w:"Tvorba", nav2:"Platformy", nav3:"Kontakt",
+    nav1:"Služby", nav_w:"Tvorba", nav2:"Platformy", nav3:"Kontakt",
     c5_h:"Upscale videí", c5_p:"Staré nebo rozmazané záběry proženu Topazem a vytáhnu z nich čisté 4K. Funguje to líp, než bys čekal.", c5_k:"Topaz Video · až 4K",
     up_h:"Upscale", u_b:"PŘED", u_a:"PO",
     up_p:"Potáhni posuvníkem a mrkni na ten rozdíl.",
-    w_h:"Ukázky tvorby",
+    w_h:"Tvorba",
     w_p:"Ukázka přímo ze střižny. Víc videí najdeš na mých profilech níž.",
     eyebrow:"VIDEO EDITOR & DIGITÁLNÍ TVŮRCE",
-    h1a:"Střih. Grafika.", h1b:"Obsah.",
-    lead:"Jsem BeneG. Stříhám videa, dělám grafiku a tvořím obsah pro YouTube, Reels a TikTok. Umím se postarat i o celé sociální sítě — od nápadu přes střih a vizuál až po publikaci.",
+    av:"OTEVŘENO PRO NOVÉ ZAKÁZKY", tags:"STŘIH · GRAFIKA · OBSAH · SPRÁVA SÍTÍ",
     cta1:"Napiš mi", cta2:"Kde mě najdeš ↓",
     st1:"let zkušeností", st2:"zhlédnutí", st3:"odpověď na poptávku",
-    s_h:"Co umím",
+    s_h:"Služby",
     c1_h:"YouTube videa", c1_p:"Klasická dlouhá videa. Pohlídám tempo, ať lidi neodkliknou po první minutě.",
     c2_p:"Rychlé střihy, titulky a hook hned v úvodu. Formát, který se dneska sleduje nejvíc.", c2_k:"9:16 · titulky · SFX",
     c3_h:"Motion & grafika", c3_p:"Intra, přechody, animované texty a efekty v After Effects, ať tvoje video nevypadá jako každé druhé.",
     c4_h:"Grafika", c4_p:"Thumbnaily, bannery a kompletní vizuál pro kanál nebo značku.",
     c6_h:"Správa sociálních sítí", c6_p:"Vezmu si na starost celý profil — plán obsahu, publikaci i konzistentní vizuál, aby sítě rostly.", c6_k:"IG · TikTok · YT",
-    p_h:"Kde působím",
+    p_h:"Platformy",
     p_yt:"Sleduj mě na YouTube", p_ig:"Sleduj mě na Instagramu", p_tt:"Sleduj mě na TikToku",
     k_h1:"Máš materiál?", k_h2:"Pojď do toho.",
     k_p:"Napiš mi, co potřebuješ nastříhat — video, grafiku nebo celé sítě.",
@@ -37,24 +75,23 @@ const I18N = {
     f1:"© 2026 BeneG — video editor"
   },
   en: {
-    nav1:"Editing", nav_w:"My work", nav2:"Platforms", nav3:"Contact",
+    nav1:"Services", nav_w:"My work", nav2:"Platforms", nav3:"Contact",
     c5_h:"Video upscaling", c5_p:"I run old or blurry footage through Topaz and pull clean 4K out of it. Works better than you'd expect.", c5_k:"Topaz Video · up to 4K",
     up_h:"Upscaling", u_b:"BEFORE", u_a:"AFTER",
     up_p:"Drag the slider and see the difference.",
-    w_h:"Selected work",
+    w_h:"My work",
     w_p:"A sample straight from the timeline. More videos on my profiles below.",
     eyebrow:"VIDEO EDITOR & DIGITAL CREATOR",
-    h1a:"Editing. Design.", h1b:"Content.",
-    lead:"I'm BeneG. I edit videos, create graphics and make content for YouTube, Reels and TikTok. I can also run your social media end to end — from idea through editing and visuals to publishing.",
+    av:"OPEN FOR NEW PROJECTS", tags:"EDITING · DESIGN · CONTENT · SOCIAL MEDIA",
     cta1:"Get in touch", cta2:"Where to find me ↓",
     st1:"years of experience", st2:"views", st3:"reply time",
-    s_h:"What I do",
+    s_h:"Services",
     c1_h:"YouTube videos", c1_p:"Classic long-form videos. I keep the pacing tight so people don't click away after the first minute.",
     c2_p:"Fast cuts, captions and a hook right at the start. The format everyone watches these days.", c2_k:"9:16 · captions · SFX",
     c3_h:"Motion & graphics", c3_p:"Intros, transitions, animated text and After Effects work, so your video doesn't look like everyone else's.",
     c4_h:"Graphics", c4_p:"Thumbnails, banners and complete visuals for your channel or brand.",
     c6_h:"Social media management", c6_p:"I take care of the whole profile — content planning, publishing and a consistent look that helps it grow.", c6_k:"IG · TikTok · YT",
-    p_h:"Where you can find me",
+    p_h:"Platforms",
     p_yt:"Follow me on YouTube", p_ig:"Follow me on Instagram", p_tt:"Follow me on TikTok",
     k_h1:"Got footage?", k_h2:"Let's do this.",
     k_p:"Tell me what you need — a video, graphics or your whole socials.",
@@ -75,6 +112,7 @@ function setLang(lang){
     b.classList.toggle('active', b.dataset.lang === lang);
   });
   document.querySelector('.lang-switch').classList.toggle('en', lang === 'en');
+  decodeText(document.querySelector('[data-i18n="eyebrow"]'));
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>setLang(btn.dataset.lang));
@@ -171,15 +209,17 @@ const BA_PAIRS = [
     const sec = document.querySelector(a.getAttribute('href'));
     if(sec) map.set(sec, a);
   });
+  const hero = document.querySelector('.hero');
   const spy = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
-      if(e.isIntersecting){
-        links.forEach(a=>a.classList.remove('active'));
-        map.get(e.target)?.classList.add('active');
-      }
+      if(!e.isIntersecting || spyLock) return;
+      links.forEach(a=>a.classList.remove('active'));
+      if(e.target !== hero) map.get(e.target)?.classList.add('active');
+      // v hero (úplně nahoře) nesvítí nic
     });
   },{rootMargin:'-35% 0px -55% 0px'});
   map.forEach((_,sec)=>spy.observe(sec));
+  if(hero) spy.observe(hero);
 })();
 
 // Šipka zpět nahoru
@@ -188,7 +228,7 @@ const BA_PAIRS = [
   addEventListener('scroll', ()=>{
     btn.classList.toggle('show', scrollY > 600);
   }, {passive:true});
-  btn.addEventListener('click', ()=>scrollTo({top:0, behavior:'smooth'}));
+  btn.addEventListener('click', ()=>{ lockSpy(null); scrollTo({top:0, behavior:'smooth'}); });
 })();
 
 // Render bar — průběh scrollu
