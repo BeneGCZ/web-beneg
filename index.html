@@ -1,206 +1,192 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Můj tmavý web</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <!-- Přidání odkazu na Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    html {
-      scroll-behavior: smooth; /* Plynulý posun */
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>BeneG — Video Editor</title>
+<meta name="description" content="BeneG — video editor. Střih YouTube videí, Shorts a Reels, motion design v After Effects a upscale videí do 4K přes Topaz Video.">
+<meta property="og:title" content="BeneG — Video Editor">
+<meta property="og:description" content="Střih. Motion. Upscale. Videa pro YouTube, Reels a TikTok — od surových záběrů po finální export.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0e0e12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e0e12'/%3E%3Cpath d='M12 9l12 7-12 7z' fill='%23ff3b30'/%3E%3C/svg%3E">
+
 </head>
 <body>
 
-<nav class="navbar">
-  <ul>
-    <li><a href="#o-nas">O nás</a></li>
-    <li><a href="#sluzby">Služby</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-    <li><a href="#sledujte-nas">Sledujte nás</a></li>
-  </ul>
-</nav>
-
-<div id="particles-js" class="particles-js"></div> <!-- Div pro částice -->
-
-<div id="o-nas" class="content">
-  <h2>O nás</h2>
-  <p>Stručně se představíme.</p>
-</div>
-
-<div id="sluzby" class="content">
-  <h2>Služby</h2>
-  <p>Nabízíme tyto služby.</p>
-</div>
-<div id="sledujte-nas" class="content social-follow">
-  <h2>Sledujte nás</h2>
-  <div class="follow-icons">
-    <a href="https://www.youtube.com/beneg" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.tiktok.com/@_beneg_" class="tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="https://www.instagram.com/_beneg_" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-  </div>
-</div>
-
-<div id="kontakt" class="content">
-  <h2>Kontakt</h2>
-  <!-- Formulář pro kontakt -->
-  <form action="submit.php" method="post" class="contact-form">
-    <div class="form-group">
-      <div class="input-box">
-        <input type="text" id="name" name="name" placeholder="Vaše jméno" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-box">
-        <input type="email" id="email" name="email" placeholder="Váš email" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-box">
-        <textarea id="message" name="message" rows="6" placeholder="Vaše zpráva" required></textarea>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-box">
-        <input type="text" id="captcha" name="captcha" placeholder="CAPTCHA" required>
-        <!-- Implementace CAPTCHA může být prováděna pomocí externí služby -->
-      </div>
-    </div>
-    <button type="submit">Odeslat</button>
-  </form>
-</div>
-
-<footer class="footer">
-  <!-- Navigační odkazy v zápatí -->
-  <nav class="footer-nav">
-    <ul>
-      <li><a href="#o-nas">O nás</a></li>
-      <li><a href="#sluzby">Služby</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-    <li><a href="#sledujte-nas">Sledujte nás</a></li>
-    </ul>
+<!-- HORNÍ LIŠTA -->
+<div class="renderbar" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="brand"><span class="rec-dot"></span>BENEG&nbsp;·&nbsp;EDITOR</div>
+  <nav id="mainnav">
+    <a href="#sluzby" data-i18n="nav1">Střih</a>
+    <a href="#tvorba" data-i18n="nav_w">Tvorba</a>
+    <a href="#platformy" data-i18n="nav2">Platformy</a>
+    <a href="#kontakt" data-i18n="nav3">Kontakt</a>
   </nav>
-  <!-- Použití ikon z Font Awesome -->
-  <ul class="social-icons">
-    <li><a href="https://www.youtube.com/beneg"><i class="fab fa-youtube"></i></a></li>
-    <li><a href="https://www.instagram.com/_beneg_"><i class="fab fa-instagram"></i></a></li>
-    <li><a href="https://www.tiktok.com/@_beneg_"><i class="fab fa-tiktok"></i></a></li>
-  </ul>
-  <p>&copy; 2024 Můj Tmavý Web. Všechna práva vyhrazena.</p>
+  <div class="lang-switch" role="group" aria-label="Jazyk / Language">
+    <button class="lang-btn active" data-lang="cs">CZ</button><button class="lang-btn" data-lang="en">EN</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<main>
+<section class="hero">
+  <div class="eyebrow"><span>● REC</span>&nbsp;&nbsp;<span data-i18n="eyebrow">VIDEO EDITOR / POST-PRODUKCE</span></div>
+  <h1>
+    <span class="line"><span data-i18n="h1a">Střih. Motion.</span></span>
+    <span class="line"><span class="stroke" data-i18n="h1b">Upscale.</span></span>
+  </h1>
+  <p class="lead" data-i18n="lead">Jsem BeneG. Stříhám videa pro YouTube, Reels a TikTok — od surových záběrů po finální export. Všechno na mých profilech jsem si stříhal sám, takže přesně vidíš, co ode mě dostaneš.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#kontakt" data-i18n="cta1">Napiš mi</a>
+    <a class="btn btn-ghost" href="#platformy" data-i18n="cta2">Kde mě najdeš ↓</a>
+  </div>
+</section>
+
+<!-- SLUŽBY -->
+<section id="sluzby">
+  <div class="sec-head reveal">
+    <span class="tag">SEQ 01</span>
+    <h2 data-i18n="s_h">Co pro tebe nastříhám</h2>
+  </div>
+  <div class="services">
+    <div class="card reveal">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 8l2.5-4.5L21 6l-1 2"/><path d="M8 4.5L10 8M13 5.2L15 8"/><path d="M10.5 12.5l4 2.5-4 2.5z"/></svg></span>
+      <h3 data-i18n="c1_h">YouTube videa</h3>
+      <p data-i18n="c1_p">Klasická dlouhá videa. Pohlídám tempo, ať lidi neodkliknou po první minutě.</p>
+      <span class="kbd">Premiere Pro · 4K</span>
+    </div>
+    <div class="card reveal" style="transition-delay:.1s">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 9.5l4.5 2.5-4.5 2.5z"/></svg></span>
+      <h3>Shorts / Reels / TikTok</h3>
+      <p data-i18n="c2_p">Rychlé střihy, titulky a hook hned v úvodu. Formát, který se dneska sleduje nejvíc.</p>
+      <span class="kbd" data-i18n="c2_k">9:16 · titulky · SFX</span>
+    </div>
+    <div class="card reveal" style="transition-delay:.2s">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18C8 18 8 6 12 6s4 12 8 12"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="6" r="1.8"/><circle cx="20" cy="18" r="1.8"/></svg></span>
+      <h3 data-i18n="c3_h">Motion & grafika</h3>
+      <p data-i18n="c3_p">Intra, přechody, animované texty a efekty v After Effects, ať tvoje video nevypadá jako každé druhé.</p>
+      <span class="kbd">After Effects</span>
+    </div>
+    <div class="card reveal" style="transition-delay:.3s">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-6.5 6.5"/><path d="M10 20H4v-6M4 20l6.5-6.5"/></svg></span>
+      <h3 data-i18n="c5_h">Upscale videí</h3>
+      <p data-i18n="c5_p">Staré nebo rozmazané záběry proženu Topazem a vytáhnu z nich čisté 4K. Funguje to líp, než bys čekal.</p>
+      <span class="kbd" data-i18n="c5_k">Topaz Video · až 4K</span>
+    </div>
+    <div class="card reveal" style="transition-delay:.4s">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 15.5l-5-5-9.5 9.5"/></svg></span>
+      <h3 data-i18n="c4_h">Thumbnaily & grafika</h3>
+      <p data-i18n="c4_p">Náhledy, na které se kliká, plus bannery a grafika na kanál.</p>
+      <span class="kbd">Photoshop</span>
+    </div>
+  </div>
+</section>
+
+<!-- TVORBA -->
+<section id="tvorba">
+  <div class="sec-head reveal">
+    <span class="tag">SEQ 02</span>
+    <h2 data-i18n="w_h">Ukázky tvorby</h2>
+  </div>
+  <div class="showcase reveal">
+    <!-- VIDEO: nahraď soubor video/ukazka.webm svým videem (stejný název, nebo uprav src níže) -->
+    <video class="video-player" controls preload="metadata" playsinline>
+      <source src="video/ukazka.webm" type="video/webm">
+      <source src="video/ukazka.mp4" type="video/mp4">
+      Tvůj prohlížeč nepodporuje přehrávání videa.
+    </video>
+    <p class="showcase-note" data-i18n="w_p">Ukázka přímo ze střižny. Víc videí najdeš na mých profilech níž.</p>
+  </div>
+</section>
+
+<!-- UPSCALE -->
+<section id="upscale">
+  <div class="sec-head reveal">
+    <span class="tag">SEQ 03</span>
+    <h2 data-i18n="up_h">Upscale — před a po</h2>
+  </div>
+  <div class="showcase reveal">
+    <!-- Dvojice obrázků se nastavují v script.js — hledej BA_PAIRS.
+         Obrázky patří do složky img/ (stejný frame: pred = originál, po = po upscalu). -->
+    <div class="ba" id="baSlider">
+      <div class="ba-layer ba-before"><img id="baImgBefore" src="img/pred1.webp" alt="Před upscalem"></div>
+      <div class="ba-layer ba-after"><img id="baImgAfter" src="img/po1.webp" alt="Po upscalu"></div>
+      <div class="ba-handle" aria-hidden="true"><span></span></div>
+      <span class="ba-label ba-label-l"><b data-i18n="u_b">PŘED</b> · 1080p</span>
+      <span class="ba-label ba-label-r"><b data-i18n="u_a">PO</b> · 4K</span>
+      <button class="ba-full" id="baFull" title="Celá obrazovka" aria-label="Zobrazit na celou obrazovku">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 4h6v6M20 4l-6 6M10 20H4v-6M4 20l6-6"/></svg>
+      </button>
+      <input type="range" class="ba-range" min="0" max="100" value="50" aria-label="Porovnání před a po upscalu">
+    </div>
+    <div class="ba-nav">
+      <button class="ba-btn" id="baPrev" aria-label="Předchozí ukázka">‹</button>
+      <span class="ba-count" id="baCount">01 / 03</span>
+      <button class="ba-btn" id="baNext" aria-label="Další ukázka">›</button>
+    </div>
+    <p class="showcase-note" data-i18n="up_p">Potáhni posuvníkem a mrkni na ten rozdíl.</p>
+  </div>
+</section>
+
+<!-- PLATFORMY -->
+<section id="platformy">
+  <div class="sec-head reveal">
+    <span class="tag">SEQ 04</span>
+    <h2 data-i18n="p_h">Kde působím</h2>
+  </div>
+  <div class="platforms">
+    <a class="plat yt reveal" href="https://www.youtube.com/@BeneG" target="_blank" rel="noopener">
+      <div class="p-name">
+        <span class="p-ico"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.3 3.5-6.3 3.5z"/></svg></span>
+        YouTube
+      </div>
+      <div class="p-cta"><span data-i18n="p_yt">Sleduj mě na YouTube</span> <span class="arr">→</span></div>
+      <div class="p-handle">@BeneG</div>
+    </a>
+    <a class="plat ig reveal" style="transition-delay:.12s" href="https://www.instagram.com/_beneg_" target="_blank" rel="noopener">
+      <div class="p-name">
+        <span class="p-ico"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.1a6.7 6.7 0 1 0 0 13.4 6.7 6.7 0 0 0 0-13.4zm0 11a4.3 4.3 0 1 1 0-8.6 4.3 4.3 0 0 1 0 8.6zm6.9-11.3a1.6 1.6 0 1 1-3.2 0 1.6 1.6 0 0 1 3.2 0z"/></svg></span>
+        Instagram
+      </div>
+      <div class="p-cta"><span data-i18n="p_ig">Sleduj mě na Instagramu</span> <span class="arr">→</span></div>
+      <div class="p-handle">@_beneg_</div>
+    </a>
+    <a class="plat tt reveal" style="transition-delay:.24s" href="https://www.tiktok.com/@_beneg_" target="_blank" rel="noopener">
+      <div class="p-name">
+        <span class="p-ico"><svg viewBox="0 0 24 24"><path d="M19.6 6.7a5.6 5.6 0 0 1-3.4-3.4A5.4 5.4 0 0 1 16 2h-3.7v14.6a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V10a6.6 6.6 0 1 0 5.7 6.5V9.6a9.2 9.2 0 0 0 5 1.5V7.4c-.5 0-.9-.1-1.4-.2-.1 0 0 0 0-.5z"/></svg></span>
+        TikTok
+      </div>
+      <div class="p-cta"><span data-i18n="p_tt">Sleduj mě na TikToku</span> <span class="arr">→</span></div>
+      <div class="p-handle">@_beneg_</div>
+    </a>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="contact-wrap reveal">
+    <h2><span data-i18n="k_h1">Máš materiál?</span><br><em data-i18n="k_h2">Pojď do toho.</em></h2>
+    <p data-i18n="k_p">Napiš mi, co potřebuješ nastříhat, a ozvu se ti zpátky — většinou do 24 hodin.</p>
+    <a class="mail" href="mailto:benegedit@gmail.com">benegedit@gmail.com</a>
+
+  </div>
+</section>
+</main>
+
+<button class="totop" aria-label="Zpět nahoru">↑</button>
+
+<footer>
+  <nav class="foot-links" aria-label="Sociální sítě">
+    <a href="https://www.youtube.com/@BeneG" target="_blank" rel="noopener">YouTube ↗</a>
+    <a href="https://www.instagram.com/_beneg_" target="_blank" rel="noopener">Instagram ↗</a>
+    <a href="https://www.tiktok.com/@_beneg_" target="_blank" rel="noopener">TikTok ↗</a>
+  </nav>
+  <span data-i18n="f1">© 2026 BeneG — video editor</span>
 </footer>
 
-<!-- Odkaz na knihovnu částic -->
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-<!-- Skript pro inicializaci částic -->
-<script>
-  particlesJS("particles-js", {
-    "particles": {
-      "number": {
-        "value": 80,
-        "density": {
-          "enable": true,
-          "value_area": 800
-        }
-      },
-      "color": {
-        "value": "#ffffff"
-      },
-      "shape": {
-        "type": "circle",
-        "stroke": {
-          "width": 0,
-          "color": "#000000"
-        }
-      },
-      "opacity": {
-        "value": 0.5,
-        "random": true,
-        "anim": {
-          "enable": true,
-          "speed": 1,
-          "opacity_min": 0.1,
-          "sync": false
-        }
-      },
-      "size": {
-        "value": 3,
-        "random": true,
-        "anim": {
-          "enable": false,
-          "speed": 40,
-          "size_min": 0.1,
-          "sync": false
-        }
-      },
-      "line_linked": {
-        "enable": true,
-        "distance": 150,
-        "color": "#ffffff",
-        "opacity": 0.4,
-        "width": 1
-      },
-      "move": {
-        "enable": true,
-        "speed": 6,
-        "direction": "none",
-        "random": false,
-        "straight": false,
-        "out_mode": "out",
-        "bounce": false,
-        "attract": {
-          "enable": false,
-          "rotateX": 600,
-          "rotateY": 1200
-        }
-      }
-    },
-    "interactivity": {
-      "detect_on": "canvas",
-      "events": {
-        "onhover": {
-          "enable": true,
-          "mode": "grab"
-        },
-        "onclick": {
-          "enable": true,
-          "mode": "push"
-        },
-        "resize": true
-      },
-      "modes": {
-        "grab": {
-          "distance": 140,
-          "line_linked": {
-            "opacity": 1
-          }
-        },
-        "bubble": {
-          "distance": 400,
-          "size": 40,
-          "duration": 2,
-          "opacity": 8,
-          "speed": 3
-        },
-        "repulse": {
-          "distance": 200,
-          "duration": 0.4
-        },
-        "push": {
-          "particles_nb": 4
-        },
-        "remove": {
-          "particles_nb": 2
-        }
-      }
-    },
-    "retina_detect": true
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
