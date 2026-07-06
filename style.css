@@ -466,6 +466,54 @@ section{padding:90px 6vw;scroll-margin-top:0px;max-width:1160px;margin-inline:au
 .ig{--pc:#c936a8}
 .tt{--pc:#00d3cf}
 
+/* ===== FAQ ===== */
+.faq-list{max-width:760px;margin-inline:auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{
+  border:1px solid var(--line);border-radius:8px;background:var(--panel);
+  transition:border-color .25s;text-align:left;
+}
+.faq-item[open]{border-color:var(--rec)}
+.faq-item summary{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  cursor:pointer;list-style:none;
+  padding:20px 22px;font-weight:700;font-size:1rem;letter-spacing:-.01em;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-ico{
+  font-family:var(--mono);color:var(--rec);font-size:1.2rem;font-weight:400;
+  transition:transform .3s;flex-shrink:0;
+}
+.faq-item[open] .faq-ico{transform:rotate(45deg)}
+.faq-item p{
+  padding:0 22px 20px;color:var(--muted);font-size:.94rem;line-height:1.65;
+}
+
+/* ===== PRÁVNÍ STRÁNKY ===== */
+.legal{
+  max-width:760px;margin:0 auto;padding:140px 6vw 80px;
+}
+.legal h1{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(1.8rem,5vw,3rem);margin-bottom:36px;
+}
+.legal h2{
+  font-family:var(--display);font-weight:600;font-size:1.15rem;
+  margin:34px 0 12px;
+}
+.legal p{color:var(--muted);line-height:1.75;font-size:.96rem}
+.legal-note{
+  border:1px solid var(--amber);border-radius:6px;padding:14px 18px;
+  color:var(--amber);font-size:.9rem;
+}
+.legal-updated{
+  margin-top:44px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+}
+.foot-legal{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+.foot-legal a{
+  color:var(--muted);text-decoration:none;transition:color .2s;
+}
+.foot-legal a:hover{color:var(--text)}
+
 /* ===== KONTAKT ===== */
 .contact-wrap{
   text-align:center;max-width:640px;margin:0 auto;
