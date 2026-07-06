@@ -81,7 +81,7 @@ body{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
   padding:14px 28px;
-  background:rgba(14,14,18,.82);
+  background:rgba(12,12,16,.93);
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
   font-family:var(--mono);font-size:13px;
@@ -148,7 +148,7 @@ body{
 .hero-shade{
   position:absolute;inset:0;z-index:-2;pointer-events:none;
   background:
-    linear-gradient(180deg,rgba(12,12,16,.55) 0%,rgba(12,12,16,.25) 45%,var(--bg) 96%);
+    linear-gradient(180deg,rgba(12,12,16,.85) 0%,rgba(12,12,16,.3) 40%,var(--bg) 96%);
 }
 .hero::before{
   content:'';position:absolute;inset:-20%;z-index:-1;pointer-events:none;
@@ -533,7 +533,7 @@ footer{
 .hero-shade{
   position:absolute;inset:0;z-index:-2;pointer-events:none;
   background:
-    linear-gradient(180deg,rgba(12,12,16,.55) 0%,rgba(12,12,16,.25) 45%,var(--bg) 96%);
+    linear-gradient(180deg,rgba(12,12,16,.85) 0%,rgba(12,12,16,.3) 40%,var(--bg) 96%);
 }
 .hero::before{display:none}
   .sec-head h2{clip-path:none}
