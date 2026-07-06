@@ -13,6 +13,7 @@ function lockSpy(targetHref){
 
 // Decode efekt na řádku nad nadpisem
 function decodeText(el){
+  if(!el) return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const finalText = el.textContent;
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&/=';
@@ -29,11 +30,15 @@ function decodeText(el){
 decodeText(document.querySelector('[data-i18n="eyebrow"]'));
 
 // Logo v liště -> zpět nahoru
-document.getElementById('brandHome').addEventListener('click', e=>{
-  e.preventDefault();
-  lockSpy(null);
-  scrollTo({top:0, behavior:'smooth'});
-});
+(function(){
+  const brand = document.getElementById('brandHome');
+  if(!brand) return;
+  brand.addEventListener('click', e=>{
+    e.preventDefault();
+    lockSpy(null);
+    scrollTo({top:0, behavior:'smooth'});
+  });
+})();
 
 // Plynulé scrollování na sekce
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -51,7 +56,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 // ===== PŘEKLADY CZ / EN =====
 const I18N = {
   cs: {
-    nav1:"Služby", nav_w:"Tvorba", nav2:"Platformy", nav3:"Kontakt",
+    nav1:"Služby", nav_w:"Tvorba", nav_u:"Upscale", nav2:"Platformy", nav3:"Kontakt",
     c5_h:"Upscale videí", c5_p:"Staré nebo rozmazané záběry proženu Topazem a vytáhnu z nich čisté 4K. Funguje to líp, než bys čekal.", c5_k:"Topaz Video · až 4K",
     up_h:"Upscale", u_b:"PŘED", u_a:"PO",
     up_p:"Potáhni posuvníkem a mrkni na ten rozdíl.",
@@ -75,7 +80,7 @@ const I18N = {
     f1:"© 2026 BeneG — video editor"
   },
   en: {
-    nav1:"Services", nav_w:"My work", nav2:"Platforms", nav3:"Contact",
+    nav1:"Services", nav_w:"My work", nav_u:"Upscaling", nav2:"Platforms", nav3:"Contact",
     c5_h:"Video upscaling", c5_p:"I run old or blurry footage through Topaz and pull clean 4K out of it. Works better than you'd expect.", c5_k:"Topaz Video · up to 4K",
     up_h:"Upscaling", u_b:"BEFORE", u_a:"AFTER",
     up_p:"Drag the slider and see the difference.",
@@ -111,7 +116,7 @@ function setLang(lang){
   document.querySelectorAll('.lang-btn').forEach(b=>{
     b.classList.toggle('active', b.dataset.lang === lang);
   });
-  document.querySelector('.lang-switch').classList.toggle('en', lang === 'en');
+  document.querySelector('.lang-switch')?.classList.toggle('en', lang === 'en');
   decodeText(document.querySelector('[data-i18n="eyebrow"]'));
 }
 document.querySelectorAll('.lang-btn').forEach(btn=>{
@@ -225,6 +230,7 @@ const BA_PAIRS = [
 // Šipka zpět nahoru
 (function(){
   const btn = document.querySelector('.totop');
+  if(!btn) return;
   addEventListener('scroll', ()=>{
     btn.classList.toggle('show', scrollY > 600);
   }, {passive:true});

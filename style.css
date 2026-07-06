@@ -272,7 +272,7 @@ h1 .line span{opacity:1}
 }
 
 /* ===== SEKCE ===== */
-section{padding:110px 6vw;scroll-margin-top:64px;max-width:1160px;margin-inline:auto}
+section{padding:90px 6vw;scroll-margin-top:0px;max-width:1160px;margin-inline:auto}
 .sec-head{
   display:flex;align-items:baseline;gap:18px;margin-bottom:56px;flex-wrap:wrap;
   justify-content:center;text-align:center;
