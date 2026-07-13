@@ -142,9 +142,9 @@ document.querySelectorAll('.lang-btn').forEach(btn=>{
 // Upscale — porovnávací slajdr + galerie více ukázek
 // Sem přidávej svoje dvojice (stejný frame: pred = originál, po = po upscalu):
 const BA_PAIRS = [
-  { before: 'img/pred1.png', after: 'img/po1.png' },
-  { before: 'img/pred2.png', after: 'img/po2.png' },
-  { before: 'img/pred3.png', after: 'img/po3.png' },
+  { before: 'img/pred1.webp', after: 'img/po1.webp' },
+  { before: 'img/pred2.webp', after: 'img/po2.webp' },
+  { before: 'img/pred3.webp', after: 'img/po3.webp' },
   // další ukázku přidáš dalším řádkem, soubory patří do složky img/
 ];
 
@@ -184,8 +184,16 @@ const BA_PAIRS = [
   // celá obrazovka
   const fullBtn = document.getElementById('baFull');
   fullBtn.addEventListener('click', ()=>{
-    if(document.fullscreenElement){ document.exitFullscreen(); }
-    else if(ba.requestFullscreen){ ba.requestFullscreen(); }
+    if(ba.requestFullscreen){
+      // prohlížeče s podporou fullscreen API
+      if(document.fullscreenElement){ document.exitFullscreen(); }
+      else{ ba.requestFullscreen(); }
+    }else{
+      // iPhone a spol. — vlastní celoobrazovkový režim
+      const on = ba.classList.toggle('fake-full');
+      document.body.classList.toggle('no-scroll', on);
+      fullBtn.setAttribute('aria-label', on ? 'Zavřít celou obrazovku' : 'Zobrazit na celou obrazovku');
+    }
   });
 
   // přednačtení, ať přepínání neblikne
