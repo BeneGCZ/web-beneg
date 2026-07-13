@@ -142,9 +142,9 @@ document.querySelectorAll('.lang-btn').forEach(btn=>{
 // Upscale — porovnávací slajdr + galerie více ukázek
 // Sem přidávej svoje dvojice (stejný frame: pred = originál, po = po upscalu):
 const BA_PAIRS = [
-  { before: 'img/pred1.webp', after: 'img/po1.webp' },
-  { before: 'img/pred2.webp', after: 'img/po2.webp' },
-  { before: 'img/pred3.webp', after: 'img/po3.webp' },
+  { before: 'img/pred1.png', after: 'img/po1.png' },
+  { before: 'img/pred2.png', after: 'img/po2.png' },
+  { before: 'img/pred3.png', after: 'img/po3.png' },
   // další ukázku přidáš dalším řádkem, soubory patří do složky img/
 ];
 
